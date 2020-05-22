@@ -9,11 +9,11 @@ import java.util.concurrent.atomic.AtomicLong;
 
 /**
  * 待解决问题：时间回拨问题
+ * 最大支持：同一毫秒下获取100个唯一id，超过100个会等待下一毫秒。
  * @author huaka
  * @since 1.8
  */
 public class DateSequence implements ISequenceGenerator, Serializable {
-
 
     private static final long serialVersionUID = 9043693628119790496L;
 
