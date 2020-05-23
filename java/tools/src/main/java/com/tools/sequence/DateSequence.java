@@ -33,8 +33,6 @@ public class DateSequence implements ISequenceGenerator, Serializable {
 
     private static volatile DateSequence instance = null;
 
-    private Boolean LOCKED = Boolean.FALSE;
-
     private DateSequence () {
         if (Objects.nonNull(instance)) {
             throw new RuntimeException("instance is exists.....");
@@ -68,7 +66,7 @@ public class DateSequence implements ISequenceGenerator, Serializable {
                //
                lastTimestamp = timeMillis;
                SEQUENCE_TMP_ID.set(0);
-               return Long.parseLong(new Date(timeMillis).toInstant().atOffset(zoneOffset).toLocalDateTime().format(DATE_TIME_FORMATTER)) * expendRatio + (SEQUENCE_TMP_ID.get());
+               return Long.parseLong(new Date(timeMillis).toInstant().atOffset(zoneOffset).toLocalDateTime().format(DATE_TIME_FORMATTER)) * expendRatio;
            }
        } else {
            //当前毫秒数下的序列数耗尽，需要等待下一毫秒
