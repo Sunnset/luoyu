@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>落雨 -v0.1</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="plugins/third/bootstrap/v-3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="plugins/third/Font-Awesome/v4.7/css/font-awesome.min.css">
+    <link rel="stylesheet" href="plugins/third/ztree/v3/css/metroStyle/metroStyle.css">
+    <link rel="stylesheet" href="plugins/luoyu/css/luoyu.css">
+</head>
+<body>
+<div class="navbar top">
+    <div class="container topContent">
+        <div class="navbar-brand" style="margin-left: 10px;">
+            <div class="titleIcon"><i class="fa fa-book" aria-hidden="true"></i></div>
+            <div class="title">落雨</div>
+        </div>
+        <div class="navbar-brand top-right" style="float: right;">
+            <div class="float-left headImage">11111</div>
+            <div class="float-left username">张三</div>
+            <div class="float-left">
+                <a href="javascript:void(0);" class="logout"><i class="fa fa-sign-out" aria-hidden="true"></i></a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="content">
+    <div class="nav-menu">
+        <ul id="ul_menu">
+        </ul>
+    </div>
+
+    <div class="nav-content">
+        <div class="row" id="mainContent">
+            <div id="mainContent_1" class="col-12 col-md-12">
+                <!-- Nav tabs -->
+                <ul class="nav nav-tabs" role="tablist" id="tab-list">
+                </ul>
+
+                <!-- Tab panes -->
+                <div id="navTabContent" class="tab-content">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal-list">
+    <div tabindex="-1" role="dialog" data-backdrop="static" aria-labelledby="ModalLableloading" class="modal fade text-center in" style="align-items: center; display: none; top: 328px; padding-left: 17px;" id="loading">
+        <div class="modal-dialog" role="document" style="display:inline-block;width:auto;">
+            <div class="modal-content" style="border: solid 0 #ffffff; background-color: gray;box-shadow: none;">
+                <div class="modal-body" style="border: solid 0 #ffffff; background-color: gray;">
+                    <div style="min-width: 200px;">
+                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="48px" height="60px" viewBox="0 0 24 30" style="enable-background:new 0 0 50 50" xml:space="preserve">
+                                <rect x="0" y="7.6416" width="4" height="14.7168" fill="#FF6700" opacity="0.2">
+                                    <animate attributeName="opacity" attributeType="XML" values="0.2; 1; .2" begin="0s" dur="0.6s" repeatCount="indefinite"></animate>
+                                    <animate attributeName="height" attributeType="XML" values="10; 20; 10" begin="0s" dur="0.6s" repeatCount="indefinite"></animate>
+                                    <animate attributeName="y" attributeType="XML" values="10; 5; 10" begin="0s" dur="0.6s" repeatCount="indefinite"></animate>
+                                </rect>
+                            <rect x="8" y="5.1416" width="4" height="19.7168" fill="#FF6700" opacity="0.2">
+                                    <animate attributeName="opacity" attributeType="XML" values="0.2; 1; .2" begin="0.15s" dur="0.6s" repeatCount="indefinite"></animate>
+                                <animate attributeName="height" attributeType="XML" values="10; 20; 10" begin="0.15s" dur="0.6s" repeatCount="indefinite"></animate>
+                                <animate attributeName="y" attributeType="XML" values="10; 5; 10" begin="0.15s" dur="0.6s" repeatCount="indefinite"></animate>
+                                </rect>
+                            <rect x="16" y="7.3584" width="4" height="15.2832" fill="#FF6700" opacity="0.2">
+                                    <animate attributeName="opacity" attributeType="XML" values="0.2; 1; .2" begin="0.3s" dur="0.6s" repeatCount="indefinite"></animate>
+                                <animate attributeName="height" attributeType="XML" values="10; 20; 10" begin="0.3s" dur="0.6s" repeatCount="indefinite"></animate>
+                                <animate attributeName="y" attributeType="XML" values="10; 5; 10" begin="0.3s" dur="0.6s" repeatCount="indefinite"></animate>
+                                </rect>
+                            </svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<ul id="navTabMenu" class="dropdown-menu">
+    <li>
+        <a href="javascript:void(0);" class="refreshCurrentTab"><i class="fa fa-refresh fa-lg" aria-hidden="true"></i>刷新当前页</a>
+    </li>
+    <li>
+        <a href="javascript:void(0);" class="closeCurrentTab"><i class="fa fa-close fa-lg" aria-hidden="true"></i>关闭当前页</a>
+    </li>
+    <li>
+        <a href="javascript:void(0);" class="closeOtherTab"><i class="fa fa-close fa-lg" aria-hidden="true"></i>关闭其他页</a>
+    </li>
+</ul>
+
+<script src="plugins/third/jquery/v1.12.4/jquery.min.js"></script>
+<script src="plugins/third/ztree/v3/js/jquery.ztree.all.min.js"></script>
+<script src="plugins/luoyu/js/plugins/button.js"></script>
+<script src="plugins/third/popper/1.16.0/popper.min.js"></script>
+<script src="plugins/third/bootstrap/v-3.3.7/js/bootstrap.js"></script>
+<script src="plugins/luoyu/js/plugins/jquery.extends.js"></script>
+<script src="plugins/luoyu/js/plugins/luoyu.js"></script>
+<script type="application/javascript">
+    $(function () {
+        $navTab.init();
+    });
+</script>
+</body>
+</html>
