@@ -25,8 +25,4 @@ public class PropertiesUtil {
     public String get(String key) {
         return props.getProperty(key, null);
     }
-
-
-
-
 }
