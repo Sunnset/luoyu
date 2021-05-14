@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--
+create table S_DICT
+(
+    UID         bigint       not null comment '主键'
+        primary key,
+    TYPE        tinyint      not null comment '字典项类型',
+    CODE        varchar(50)  not null comment '字典编码',
+    NAME        varchar(50)  not null comment '字典名称',
+    CONTENT     varchar(50)  not null comment '字典内容',
+    REMARK      varchar(255) not null comment '字典备注',
+    PTN_CODE    varchar(50)  not null comment '上级字典编码',
+    ORDER_NUM   int          not null comment '字典序号',
+    CREATE_TIME datetime     not null comment '创建时间',
+    UPD_TIME    datetime     not null comment '更新时间'
+)
+    comment '系统-字典表';
+-->
+<mapper namespace="com.luoyu.dao.mapper.system.SDictMapper">
+
+    <resultMap type="com.luoyu.common.entity.system.SDict" id="dictMap">
+        <id property="uid" column="UID"/>
+        <result property="name" column="TYPE" />
+        <result property="code" column="CODE" />
+        <result property="name" column="NAME" />
+        <result property="content" column="CONTENT" />
+        <result property="remark" column="REMARK" />
+        <result property="ptnCode" column="PTN_CODE" />
+        <result property="orderNum" column="ORDER_NUM" />
+        <result property="createTime" column="CREATE_TIME" />
+        <result property="updTime" column="UPD_TIME" />
+    </resultMap>
+
+
+</mapper>
