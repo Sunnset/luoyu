@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.luoyu</groupId>
     <artifactId>dao</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.0.1</version>
     <name>luoyu-dao</name>
     <packaging>jar</packaging>
     <description>Demo project for Spring Boot</description>
@@ -13,7 +13,7 @@
         <groupId>com</groupId>
         <artifactId>luoyu</artifactId>
         <version>0.0.1</version>
-        <relativePath/>
+        <relativePath>../</relativePath>
     </parent>
 
     <properties>
@@ -45,6 +45,10 @@
             <groupId>tk.mybatis</groupId>
             <artifactId>mapper-spring-boot-starter</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.luoyu</groupId>
+            <artifactId>common</artifactId>
+        </dependency>
     </dependencies>
 
     <build>
@@ -52,6 +56,9 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <skip>true</skip>
+                </configuration>
             </plugin>
         </plugins>
     </build>

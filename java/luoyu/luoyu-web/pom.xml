@@ -13,6 +13,7 @@
         <groupId>com</groupId>
         <artifactId>luoyu</artifactId>
         <version>0.0.1</version>
+        <relativePath>../</relativePath>
     </parent>
 
     <properties>
@@ -35,7 +36,6 @@
         <dependency>
             <groupId>com.luoyu</groupId>
             <artifactId>service</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
         </dependency>
     </dependencies>
 

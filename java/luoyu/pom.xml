@@ -33,13 +33,16 @@
         <mapper.version>2.1.5</mapper.version>
         <pagehelper.version>5.2.0</pagehelper.version>
         <mybatis.starter.version>2.1.4</mybatis.starter.version>
+        <luoyu.dao.version>0.0.1</luoyu.dao.version>
+        <luoyu.service.version>0.0.1</luoyu.service.version>
+        <luoyu.common.version>0.0.1</luoyu.common.version>
     </properties>
 
     <repositories>
         <repository>
             <id>central</id>
             <name>central repository</name>
-            <url>https://maven.aliyun.com/repository/public</url>
+            <url>https://maven.aliyun.com/nexus/content/groups/public</url>
             <layout>default</layout>
             <releases>
                 <enabled>true</enabled>
@@ -64,11 +67,6 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.luoyu</groupId>
-            <artifactId>common</artifactId>
-            <version>0.0.1</version>
         </dependency>
     </dependencies>
 
@@ -102,6 +100,21 @@
                 <groupId>org.mybatis.spring.boot</groupId>
                 <artifactId>mybatis-spring-boot-starter</artifactId>
                 <version>${mybatis.starter.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.luoyu</groupId>
+                <artifactId>dao</artifactId>
+                <version>${luoyu.dao.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.luoyu</groupId>
+                <artifactId>service</artifactId>
+                <version>${luoyu.service.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.luoyu</groupId>
+                <artifactId>common</artifactId>
+                <version>${luoyu.common.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
