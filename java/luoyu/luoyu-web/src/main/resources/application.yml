@@ -5,9 +5,10 @@ spring:
       type: com.alibaba.druid.pool.DruidDataSource
       url: jdbc:mysql://101.201.100.133:3306/luoyu?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=UTF-8&useSSL=false
       username: luoyu
-#      password: kadxZuMkhbiJi3vRv/Wx8EZZH59cl1MyJK8QQYyeY07qxUhHP19B+d4W3w2BwsdvcD7GpvXoToCXzpXKPP+APw==
-      password: luoyu
+      password: kadxZuMkhbiJi3vRv/Wx8EZZH59cl1MyJK8QQYyeY07qxUhHP19B+d4W3w2BwsdvcD7GpvXoToCXzpXKPP+APw==
       driverClassName: com.mysql.cj.jdbc.Driver
+      filters: config,stat,wall,slf4j
+      connection-properties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=2000;config.decrypt=true;config.decrypt.key=MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBALgO071J2f4Lyvs1H6UURyiLTuPjIsQpOpZAjWjn6YPGQy7fN+P023Ek2SENy/soCNaneW0HJztJ4MKPRGQGcBcCAwEAAQ==
       druid:
           # 初始化时建立物理连接的个数
           initial-size: 3
@@ -38,11 +39,9 @@ spring:
           # 合并多个DruidDataSource的监控数据
           use-global-data-source-stat: false
           # 配置扩展插件
-          filters: stat,wall,slf4j
           filter:
               config:
                   enabled: true
-#          connection-properties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=2000;config.decrypt=true;config.decrypt.key=MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBALgO071J2f4Lyvs1H6UURyiLTuPjIsQpOpZAjWjn6YPGQy7fN+P023Ek2SENy/soCNaneW0HJztJ4MKPRGQGcBcCAwEAAQ==
           # 定时输出统计信息到日志中，并每次输出日志会导致清零（reset）连接池相关的计数器。
           time-between-log-stats-millis: 300000
           # 配置DruidStatFilter
@@ -75,4 +74,3 @@ mybatis:
     mapper-locations: classpath:mapper/**/*.xml
 mapper:
     identity: MYSQL
-    #mappers: com.luoyu.dao.mapper
