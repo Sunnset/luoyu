@@ -9,7 +9,7 @@
 - 显卡：Intel® HD Graphics 630
 - 网卡：Intel AX200
 - 系统信息：11.4
-- OpenCore： 6.6.0
+- OpenCore： 0.6.6
 
 ## 已解决的问题
 
