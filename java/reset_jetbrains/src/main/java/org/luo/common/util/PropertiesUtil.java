@@ -3,6 +3,7 @@ package org.luo.common.util;
 import java.io.File;
 import java.io.FileInputStream;
 import java.util.Properties;
+import java.util.concurrent.atomic.AtomicReference;
 
 public class PropertiesUtil {
     private static Properties props =  null;
@@ -24,5 +25,14 @@ public class PropertiesUtil {
 
     public String get(String key) {
         return props.getProperty(key, null);
+    }
+
+    public String getLike (String key) {
+        for (String name : props.stringPropertyNames()) {
+            if (name.contains(key)) {
+                return props.getProperty(key);
+            }
+        }
+        return null;
     }
 }
