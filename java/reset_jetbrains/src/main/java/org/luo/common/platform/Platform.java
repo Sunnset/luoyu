@@ -49,12 +49,12 @@ public abstract class Platform {
             if (props.size() == 1) {
                 PropertiesUtil prop = new PropertiesUtil(props.get(0));
                 String configPath = prop.getLike("config.path");
-                delFiles.add(configPath + File.separator + "options" + File.separator + "other.xml");
-                delFiles.add(configPath + File.separator + "eval");
-            } else {
-                delFiles.add(path + File.separator + "options" + File.separator + "other.xml");
-                delFiles.add(path + File.separator + "eval");
+                if (!Objects.isNull(configPath) && configPath.length() != 0) {
+                    path = configPath;
+                }
             }
+            delFiles.add(path + File.separator + "options" + File.separator + "other.xml");
+            delFiles.add(path + File.separator + "eval");
         });
         handlerEval();
         delFiles.forEach(e ->{
