@@ -11,7 +11,7 @@ import org.luo.common.platform.Platform;
 public class PlatformMac extends Platform {
     /**
      * 收集本地安装的Jetbrains产品信息
-     *
+     * /Users/wangzb/Library/Application Support/JetBrains/IntelliJIdea2021.1/options
      * @return list
      */
     @Override
