@@ -22,4 +22,37 @@ public class FileLabel implements Serializable {
      * 标签的唯一标识
      */
     private long label;
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public long getFile() {
+        return file;
+    }
+
+    public void setFile(long file) {
+        this.file = file;
+    }
+
+    public long getLabel() {
+        return label;
+    }
+
+    public void setLabel(long label) {
+        this.label = label;
+    }
+
+    @Override
+    public String toString() {
+        return "FileLabel{" +
+                "id=" + id +
+                ", file=" + file +
+                ", label=" + label +
+                '}';
+    }
 }
