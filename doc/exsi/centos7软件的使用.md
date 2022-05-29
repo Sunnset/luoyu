@@ -26,3 +26,7 @@
 
 - 将安装包移动到/usr/local路径。
 - 将mysql安装包解压缩：`tar -Jxvf mysql-8.0.29-linux-glibc2.12-x86_64.tar.xz`。
+
+5. 检查其他版本MySQL
+
+- 检查是否有其他版本的MySQL，命令：`rpm -qa|grep mysql`，如果没有信息输出，则表示未安装MySQL，否则需要卸载已安装的MySQL，命令为：`rpm -e --nodeps mysql文件名`。
