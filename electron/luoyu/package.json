@@ -1,0 +1,12 @@
+{
+  "name": "luoyu",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^19.0.2"
+  },
+  "scripts": {
+    "start": "electron ./index.js"
+  }
+}
