@@ -3,6 +3,7 @@ var electron = require('electron');
 var app = electron.app;
 var BrowserWindow = electron.BrowserWindow;
 var win = null;
+const remote = require('@electron/remote/main');
 //解决“Electron Security Warning”安全警告
 process.env['ELECTRON_DISABLE_SECURITY_WARNINGS'] = 'true'
 app.on('ready', function () {
@@ -10,9 +11,13 @@ app.on('ready', function () {
         //配置对象
         webPreferences: {
             //页面集成node.js,并赋予index.html页面中的javascript访问node环境，访问互联网页面并无法验证是否安全，则该项应为false
-            nodeIntegration: true
+            nodeIntegration: true,
+            contextIsolation: false,
+            enableRemoteModule:true
         }
     });
+    remote.initialize();
+    remote.enable(win.webContents);
     win.loadFile("index.html");
     //打开开发者工具
     win.webContents.openDevTools();

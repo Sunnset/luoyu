@@ -8,5 +8,8 @@
   },
   "scripts": {
     "start": "electron ./index.js"
+  },
+  "dependencies": {
+    "@electron/remote": "^2.0.8"
   }
 }

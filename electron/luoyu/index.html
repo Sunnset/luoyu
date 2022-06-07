@@ -8,5 +8,12 @@
 <div style="padding: 60px;font-size: 38px;font-weight: bold;text-align: center">
     Hello World!!!!
 </div>
+<button id="openDevToolsBtn">打开开发者工具</button>
 </body>
+<script>
+    const remote = require('electron').remote;
+    document.querySelector('#openDevToolsBtn').addEventListener('click',function () {
+        console.dir(remote);
+    })
+</script>
 </html>
