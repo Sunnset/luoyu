@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>过滤器</title>
+</head>
+<body>
+<div id="root">
+    <h1>过滤器</h1>
+    <h2>计算属性实现-现在时间是{{formatDate}}</h2>
+    <h2>方法计算实现-现在时间是{{getFmtDate()}}</h2>
+    <h2>过滤器实现-现在时间是{{time | timeFormatter | strSlick}}</h2>
+</div>
+
+</body>
+<script src="js/vue.js"></script>
+<script src="js/dayjs.min.js"></script>
+<script type="text/javascript">
+    //阻止Vue在启动时生成生产提示。
+    Vue.config.productionTip = false;
+    Vue.filter('过滤器名',function(value){
+
+    })
+    //创建vue实例
+    new Vue({
+        el: '#root',//用于指定当前vue实例为哪个容器服务，值通常为css选择器字符串，也可以使用document.getElementById('root')
+        data:{//data中用于存储数据，数据供el所指定的容器去使用，值我们暂时先写成一个对象
+            time:new Date().getTime()
+        },
+        computed:{
+            formatDate(){
+                return dayjs(this.time).format('YYYY年M月D日 H时m分s秒');
+            }
+        },
+        methods:{
+            getFmtDate(){
+                return dayjs(this.time).format('YYYY年M月D日 H时m分s秒');
+            }
+        },
+        //局部过滤器
+        filters:{
+            timeFormatter(val,format = 'YYYY年M月D日 H时m分s秒'){
+                return dayjs(val).format('YYYY年M月D日 H时m分s秒');
+            },
+            strSlick(value){
+                return value.slice(0, 4);
+            }
+        }
+    })
+</script>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>收集表单数据</title>
+</head>
+<body>
+<div id="root">
+    <h1>收集表单数据</h1>
+    <form action="">
+        账号<input type="text" v-model.trim="user.account"><br/><br/>
+        密码 <input type="password" v-model.trim="user.password"><br/><br/>
+        年龄 <input type="number" v-model.number="user.age"><br/><br/>
+        性别 <input type="radio" name="sex" value="1" v-model="user.sex">男
+            <input type="radio" name="sex" value="2" v-model="user.sex">女<br/><br/>
+        爱好 <input type="checkbox" name="hobby" value="1" v-model="user.hobby">看电影
+            <input type="checkbox" name="hobby" value="2" v-model="user.hobby">打游戏<br/><br/>
+        所属校区
+        <select v-model="user.school">
+            <option>请选择</option>
+            <option value="beijing">北京</option>
+        </select>
+        <br/><br/>
+    </form>
+</div>
+
+</body>
+<script src="js/vue.js"></script>
+<script type="text/javascript">
+    //阻止Vue在启动时生成生产提示。
+    Vue.config.productionTip = false;
+    //创建vue实例
+    new Vue({
+        el: '#root',//用于指定当前vue实例为哪个容器服务，值通常为css选择器字符串，也可以使用document.getElementById('root')
+        data:{//data中用于存储数据，数据供el所指定的容器去使用，值我们暂时先写成一个对象
+            user:{
+                account:'',
+                password:'',
+                age:'',
+                sex:'',
+                school:'',
+                hobby:[]
+            }
+        }
+    })
+</script>
+</html>

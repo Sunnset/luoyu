@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>属性监视</title>
+</head>
+<body>
+<div id="root">
+    <h1>属性监视</h1>
+    <h2>今天天气很{{info}}</h2>
+    <button @click="changeWeather">切换天气</button>
+</div>
+
+</body>
+<script src="js/vue.js"></script>
+<script type="text/javascript">
+    //阻止Vue在启动时生成生产提示。
+    Vue.config.productionTip = false;
+    //创建vue实例
+    const vm = new Vue({
+        el: '#root',//用于指定当前vue实例为哪个容器服务，值通常为css选择器字符串，也可以使用document.getElementById('root')
+        data:{//data中用于存储数据，数据供el所指定的容器去使用，值我们暂时先写成一个对象
+            isHot: true
+        },
+        computed:{
+            info(){
+                return this.isHot? '炎热' :'凉爽';
+            }
+        },
+        methods:{
+            changeWeather(){
+                this.isHot = !this.isHot;
+            }
+        }
+        ,watch:{
+            isHot:{//需要监视的属性/计算属性
+                //为true-初始化时让handler调用一下
+                immediate:true,
+                //当isHot发生改变时调用
+                handler(newValue,oldValue){
+                    console.log('修改后：',newValue,'修改前',oldValue)
+                }
+            }
+        }
+    })
+    vm.$watch('info',{//需要监视的属性/计算属性
+        //为true-初始化时让handler调用一下
+        immediate:true,
+        //当isHot发生改变时调用
+        handler(newValue,oldValue){
+            console.log('修改后：',newValue,'修改前',oldValue)
+        }
+    })
+</script>
+</html>

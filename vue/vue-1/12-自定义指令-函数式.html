@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>自定义指令-函数式</title>
+</head>
+<body>
+<div id="root">
+    <h1>自定义指令-函数式</h1>
+    <h2>当前number值：{{number}}</h2>
+    <h2>number放大10倍后的值:<span v-big="number"></span></h2>
+    <button @click="number++">点我n+1</button>
+</div>
+
+</body>
+<script src="js/vue.js"></script>
+<script type="text/javascript">
+    //阻止Vue在启动时生成生产提示。
+    Vue.config.productionTip = false;
+    //创建vue实例
+    new Vue({
+        el: '#root',//用于指定当前vue实例为哪个容器服务，值通常为css选择器字符串，也可以使用document.getElementById('root')
+        data:{//data中用于存储数据，数据供el所指定的容器去使用，值我们暂时先写成一个对象
+            number: 1
+        },
+        directives:{
+            big(dom,binding){
+                dom.innerText= binding.value * 10;
+            }
+        }
+    })
+</script>
+</html>
