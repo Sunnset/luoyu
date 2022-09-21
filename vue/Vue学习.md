@@ -108,6 +108,7 @@ if(){},for(){}
 
 - 说明：数据不仅能从data流向页面，还可以从页面流向data。
 - 语法：`v-model:value="name"`，可以简写为`v-model`，因为v-model默认收集的就是value值。
+- 注意：v-model版定的值不能是props传过来的值，因为props是不可以修改的。
 - 修饰符：
   - lazy：失去焦点在收集数据。
   - number：输入字符串转为有效数字。
@@ -622,7 +623,12 @@ Vue.directive('指令名',{
 
 > <element name="value"/>
 
-2. 接收数据
+2. 使用场景：
+
+- 父组件==>子组件通信
+- 子组件==>父组件通信，要求父组件先给自组件一个函数
+
+3. 接收数据
 
 - 只接收
 
@@ -751,3 +757,113 @@ VueComponent.property.\_\_proto\_\_=== Vue.prototype。让组件实例对象可�
 - babel.config.js - es6转es5配置文件，不需要修改
 - package-lock.json - 包版本控制文件
 - package.json - 命令文件
+
+### 2.6. 组件化编码流程
+
+1. 拆分静态组件：组件要按照功能点拆分，命名不要与html元素冲突。
+2. 实现动态组件：考虑好数据的存放位置，数据是一个组件在用，还是一些组件在用
+
+- 一个组件在用：放在组件自身即可。
+- 一些组件在用：放在他们共同的父组件上。
+
+### 2.7. 组件自定义事件
+
+> 一种组件间的通信方式，适用于：`自组件==>父组件`。
+
+- 使用场景：A是父组件，B是子组件，B想给A传数据，那么就要在A中给B绑定自定义事件。
+
+- 绑定自定义事件
+
+  - 方式一
+
+  ```javascript
+  <tarName @自定义事件名称="事件回调" 或者 v-on:自定义事件名称="事件回调"
+  ```
+
+  - 方式二
+
+  > 通过该方式绑定自定义事件时，回调要么配置在methods中，要么使用箭头函数，否则this的指向会出问题。
+
+  ```javascript
+  <Demo ref="ref1"/>
+  mounted(){
+  	this.$ref.xxx.$on('自定义事件名',this.test)
+  }
+  ```
+
+- 触发自定义事件
+
+```javascript
+this.$emit('自定义事件名',数据)
+```
+
+- 解绑自定义事件
+
+```javascript
+this.$off('自定义事件名')
+```
+
+- 使用原生DOM事件
+
+使用`native`修饰符
+
+### 2.8. 全局事件总线
+
+> 一种组件间通信的方式，适用于任意组件间通信
+
+- 安装全局事件总线
+
+```javascript
+new Vue({
+	......
+	beforeCreate(){
+		Vue.prototype.$bus = this//安装全局事件总线，$bus就是当前应用的vm
+	},
+	......
+})
+```
+
+- 使用事件总线
+
+  - 接收数据
+
+  ```javascript
+  methods(){
+  	
+  }
+  ......
+  mounted(){
+  	this.$bus.$on('xxxx',this.demo)
+  }
+  ```
+
+  - 提供数据
+
+  ```javascript
+  this.$bus.$emit('xxx',数据)
+  ```
+
+- 最好在beforeDestory钩子中，用$off去解绑当前组件所用到的事件。
+
+### 2.9 消息订阅与发布
+
+> 一种组件间通信的方式，适用于任意组件间通信
+
+- 使用步骤
+
+  1. 安装pubsub：`npm i pubsub-js`。
+  2. 引入：`import pubsub from 'pubsub-js'`
+  3. 接收数据：A组件想接收数据，则在A组件中订阅消息，订阅的回调留在A组件自身。
+
+  ```javascript
+  methods(){
+  	demo(data){}
+  }
+  ......
+  mounted(){
+  	this.pid = pubsub.subscribe('订阅消息名',this.demo)
+  }
+  ```
+
+  4. 提供数据：`pubsub.publish('订阅消息名',数据)`
+  5. 最好在beforeDestroy钩子中，用`PubSub.unsubscribe(pid)`取消订阅。

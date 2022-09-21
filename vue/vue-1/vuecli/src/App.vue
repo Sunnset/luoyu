@@ -2,9 +2,9 @@
   <div>
     <School :schoolExt="'1'"/>
     <div>
-      <TodoHeader/>
-      <TodoList/>
-      <TodoFooter/>
+      <TodoHeader :addTodo="addTodo"/>
+      <TodoList :changeDone="changeDone" :todos="todos" :delTodo="delTodo"/>
+      <TodoFooter :todos="todos" :updateDone="updateDone" :delDone="delDone"/>
     </div>
   </div>
 
@@ -23,6 +23,47 @@ export default {
     TodoList,
     TodoFooter,
     TodoHeader
+  },
+  data(){
+    return {
+      todos:[]
+    }
+  },
+  methods:{
+    changeDone(id){
+      this.todos.forEach(todo =>{
+        if (todo.id===id) todo.done = !todo.done
+      })
+    },
+    addTodo(obj){
+      this.todos.unshift(obj);
+    },
+    delTodo(id){
+      this.todos = this.todos.filter((todo)=>{
+        return todo.id != id;
+      })
+    },
+    updateDone(doneFlag){
+      this.todos.forEach(e => e.done = doneFlag);
+    },
+    delDone(){
+      this.todos = this.todos.filter((todo)=>{
+        return !todo.done;
+      })
+    }
+  },
+  watch:{
+    todos:{
+      deep:true,
+      handler(value){
+        localStorage.setItem('todos',JSON.stringify(value))
+      }
+
+    }
+  },
+  mounted() {
+      this.todos = JSON.parse(localStorage.getItem('todos')) || []
   }
+
 }
 </script>

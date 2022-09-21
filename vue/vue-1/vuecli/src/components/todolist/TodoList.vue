@@ -1,6 +1,6 @@
 <template>
   <ul class="todo-main">
-    <TodoItem/>
+    <TodoItem @custom="customCallback" v-for="item in todos" :key="item.id" :todoObj="item" :changeDone="changeDone" :delTodo="delTodo"/>
   </ul>
 </template>
 
@@ -8,14 +8,15 @@
 import TodoItem from "@/components/todolist/TodoItem";
 export default {
   name: "TodoList",
-  data(){
-    return {
-
-    }
-  },
   components:{
     TodoItem
-  }
+  },
+  methods:{
+    customCallback(el){
+      alert(el+ '');
+    }
+  },
+  props:['todos','changeDone','delTodo']
 }
 </script>
 
