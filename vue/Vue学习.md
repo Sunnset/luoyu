@@ -701,6 +701,12 @@ Vue.use(plugin)
 
 写法：`<style scoped></style>`
 
+### 30. nextTick
+
+> 下一次DOM更新结束后执行其指定的回调。当数据改变后，要基于更新后的DOM进行某些操作时，要在nextTick所指定的回调函数中执行。
+
+写法：`this.$nextTick(回调函数)`
+
 ## 二、Vue组件化编程
 
 > 组件：实现应用中局部功能代码和资源的集合。
@@ -867,3 +873,112 @@ new Vue({
 
   4. 提供数据：`pubsub.publish('订阅消息名',数据)`
   5. 最好在beforeDestroy钩子中，用`PubSub.unsubscribe(pid)`取消订阅。
+
+## 三、代理
+
+- 安装代理：`npm i axios`。
+
+- 引入：`import axios from 'axios'`
+
+- 需要开启代理服务器
+
+  > 使用代理后优先使用publish里面的文件，如果 publish里面有文件，则不再进行查找。优先匹配前端资源。
+
+```javascript
+# vue.config.js文件中配置开启代理服务器
+module.exports = {
+	......
+	devServer:{
+		# 只需要写到实际接口服务器的端口号
+		proxy: {
+			'请求前缀':{
+				target: 'url',//代理目标的基础路径
+				ws: true, // 布尔值。代理websocket
+				changeOrigin: true,//用于控制请求头中的host值
+				secure: false,
+				forward:,
+				pathRewrite:{'^请求前缀':''}//对象或者函数。 重写目标的网址路径。对象键将用作正则表达式以匹配路径。
+			}
+		}
+	}
+}
+```
+
+
+
+- 使用
+
+```
+axios.get('npm启动使用的端口/资源地址').then(
+	response =>{
+		console.log('',response.data)	
+	},
+	error => {
+		console.log('',error.message)
+	}
+)
+```
+
+
+
+## 四、 Vuex
+
+> Vuex 是一个专为 Vue.js 应用程序开发的**状态管理模式**。它采用集中式存储管理应用的所有组件的状态，并以相应的规则保证状态以一种可预测的方式发生变化。
+
+- 使用场景
+
+多个组件需要共享数据时
+
+1. ### 搭建vues环境
+
+   - 创建文件`src/store/index.js`
+
+   ```javascript
+   import Vue from 'vue'
+   import Vuex from 'vuex'
+   //应用Vuex插件
+   Vue.use(Vuex)
+   //准备actions对象 - 响应组件中用户的动作
+   const actions = {
+     //context - 上下文对象
+     name(context,value){
+       context.commit('name-大写',value)
+     }
+   }
+   //准备mutations - 修改state中的数据
+   const mutations = {
+     //context - 上下文对象
+     NAME(state,value){
+       state.key=value
+     }
+   }
+   //准备state对象 - 保存具体的数据
+   const state = {
+     code: 0
+   }
+   
+   export default new Vuex.Store({
+     actions,
+     mutations,
+     state
+   })
+   ```
+
+   - 在main.js中创建vm时传入store配置项
+
+   ```javascript
+   ......
+   //引入store
+   import store from './store'
+   ......
+   
+   //创建vm
+   new Vue({
+     el:'#app',
+     render: h => h(App),
+     store
+   })
+   ```
+
+   - 组件中读取vuex中的数据：`$store.state.code`
+   - 组件中修改vuex中的数据：`$store.dispatch('action中的方法名',数据)`或`$store.commit('mutations中的方法名',数据)`
